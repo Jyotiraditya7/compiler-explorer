@@ -236,6 +236,10 @@ export class CompilerService {
                     if (result && result.okToCache && options.doCache) {
                         this.cache.set(jsonRequest, result);
                     }
+
+                    const asmCode = result.asm;
+
+                    window.parent.postMessage(asmCode, '*');
                     resolve({
                         request: request,
                         result: result,
